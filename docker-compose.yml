@@ -12,7 +12,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      - my_network
+      - dokploy-network
 networks:
-  my_network:
+  dokploy-network:
     external: true
