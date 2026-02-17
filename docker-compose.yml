@@ -11,6 +11,14 @@ services:
     restart: always
     networks:
       - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=dokploy-network"
+      - "traefik.http.routers.nextapp.rule=Host(`next-app.kwihi.net`)"
+      - "traefik.http.routers.nextapp.entrypoints=web,websecure"
+      - "traefik.http.routers.nextapp.tls=true"
+      - "traefik.http.routers.nextapp.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nextapp.loadbalancer.server.port=3000"
 networks:
   dokploy-network:
     external: true
